@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Firindan" Class="DatabaseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-CVK7E5G\SQLEXPRESS;Initial Catalog=Firindan;Integrated Security=True" SettingsObjectName="Gazete.Data.Properties.Settings" SettingsPropertyName="FirindanConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Adisyon" Member="Adisyon">
+    <Type Name="Adisyon">
+      <Column Name="Kod" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MusteriKod" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Tarih" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="KapandiMi" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Adisyon_AdisyonBilgi" Member="AdisyonBilgi" ThisKey="Kod" OtherKey="AdisyonKod" Type="AdisyonBilgi" />
+      <Association Name="Adisyon_MusteriOdeme" Member="MusteriOdeme" ThisKey="Kod" OtherKey="AdisyonKod" Type="MusteriOdeme" />
+      <Association Name="Masa_Adisyon" Member="Masa" ThisKey="MusteriKod" OtherKey="Kod" Type="Masa" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AdisyonBilgi" Member="AdisyonBilgi">
+    <Type Name="AdisyonBilgi">
+      <Column Name="Kod" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AdisyonKod" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UrunKod" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UrunAdet" Type="System.Decimal" DbType="Decimal(8,4)" CanBeNull="true" />
+      <Association Name="Adisyon_AdisyonBilgi" Member="Adisyon" ThisKey="AdisyonKod" OtherKey="Kod" Type="Adisyon" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="Urun_AdisyonBilgi" Member="Urun" ThisKey="UrunKod" OtherKey="Kod" Type="Urun" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Borc" Member="Borc">
+    <Type Name="Borc">
+      <Column Name="Kod" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Aciklama" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Tutar" Type="System.Decimal" DbType="Decimal(8,4)" CanBeNull="true" />
+      <Column Name="Tarih" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CariOdeme" Member="CariOdeme">
+    <Type Name="CariOdeme">
+      <Column Name="Kod" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Tutar" Type="System.Decimal" DbType="Decimal(8,4)" CanBeNull="true" />
+      <Column Name="Tarih" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gider" Member="Gider">
+    <Type Name="Gider">
+      <Column Name="Kod" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Aciklama" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Tutar" Type="System.Decimal" DbType="Decimal(8,4)" CanBeNull="true" />
+      <Column Name="Tarih" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Masa" Member="Masa">
+    <Type Name="Masa">
+      <Column Name="Kod" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Ad" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MasaTipiKod" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AcikKapali" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Masa_Adisyon" Member="Adisyon" ThisKey="Kod" OtherKey="MusteriKod" Type="Adisyon" />
+      <Association Name="MasaTipi_Masa" Member="MasaTipi" ThisKey="MasaTipiKod" OtherKey="Kod" Type="MasaTipi" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MasaTipi" Member="MasaTipi">
+    <Type Name="MasaTipi">
+      <Column Name="Kod" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Tur" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="MasaTipi_Masa" Member="Masa" ThisKey="Kod" OtherKey="MasaTipiKod" Type="Masa" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MusteriOdeme" Member="MusteriOdeme">
+    <Type Name="MusteriOdeme">
+      <Column Name="Kod" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AdisyonKod" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OdemeTipiKod" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OdemeTutar" Type="System.Decimal" DbType="Decimal(8,4)" CanBeNull="true" />
+      <Association Name="Adisyon_MusteriOdeme" Member="Adisyon" ThisKey="AdisyonKod" OtherKey="Kod" Type="Adisyon" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="OdemeTipi_MusteriOdeme" Member="OdemeTipi" ThisKey="OdemeTipiKod" OtherKey="Kod" Type="OdemeTipi" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OdemeTipi" Member="OdemeTipi">
+    <Type Name="OdemeTipi">
+      <Column Name="Kod" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Tip" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="OdemeTipi_MusteriOdeme" Member="MusteriOdeme" ThisKey="Kod" OtherKey="OdemeTipiKod" Type="MusteriOdeme" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Urun" Member="Urun">
+    <Type Name="Urun">
+      <Column Name="Kod" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Ad" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Fiyat" Type="System.Decimal" DbType="Decimal(8,4)" CanBeNull="true" />
+      <Column Name="Adet" Type="System.Decimal" DbType="Decimal(8,4)" CanBeNull="true" />
+      <Column Name="UrunTuruKod" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Urun_AdisyonBilgi" Member="AdisyonBilgi" ThisKey="Kod" OtherKey="UrunKod" Type="AdisyonBilgi" />
+      <Association Name="UrunTuru_Urun" Member="UrunTuru" ThisKey="UrunTuruKod" OtherKey="Kod" Type="UrunTuru" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UrunTuru" Member="UrunTuru">
+    <Type Name="UrunTuru">
+      <Column Name="Kod" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Tur" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="UrunTuru_Urun" Member="Urun" ThisKey="Kod" OtherKey="UrunTuruKod" Type="Urun" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,20 @@
+﻿<Window x:Class="Gazete.View.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gazete"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="MainWindow" Height="177.5" Width="285">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBox materialDesign:HintAssist.Hint="Kullanıcı Adı"/>
+        <TextBox materialDesign:HintAssist.Hint="Şifre" Grid.Row="1"/>
+        <Button Content="Giriş" Grid.Row="2"/>
+    </Grid>
+</Window>

@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="Gazete.View.ReportOperations"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Gazete.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" Width="586.592">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="Günlük Rapor" Margin="5,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <DatePicker Margin="0,10"/>
+                <ListView Grid.Row="1"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Aylık Rapor" Grid.Column="1" Margin="5,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <ComboBox Margin="5,0"/>
+                    <ComboBox Grid.Column="1" Margin="5,0"/>
+                    <Button Content="Döküman Gör" Grid.Column="2" Margin="5,0"/>
+                </Grid>
+                <ListView Grid.Row="1"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>
