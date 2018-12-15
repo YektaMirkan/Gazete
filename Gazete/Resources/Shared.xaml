@@ -2,5 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Gazete.Resources">
     <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+    <SolidColorBrush x:Key="IconBrush" Color="#FF556F7B"/>
 
 </ResourceDictionary>

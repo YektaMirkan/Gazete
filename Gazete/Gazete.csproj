@@ -60,6 +60,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Dialogs\InformationMessageDialog.xaml.cs">
+      <DependentUpon>InformationMessageDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\QuestionMessageDialog.xaml.cs">
+      <DependentUpon>QuestionMessageDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\WarningMessageDialog.xaml.cs">
+      <DependentUpon>WarningMessageDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\DialogOpertaions.cs" />
+    <Compile Include="Utilities\CustomCommand.cs" />
+    <Compile Include="Utilities\Extentions.cs" />
+    <Compile Include="ViewModel\TableOperationsViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\ExpenseOperations.xaml.cs">
       <DependentUpon>ExpenseOperations.xaml</DependentUpon>
     </Compile>
@@ -81,6 +95,18 @@
     <Compile Include="View\TableOperations.xaml.cs">
       <DependentUpon>TableOperations.xaml</DependentUpon>
     </Compile>
+    <Page Include="Dialogs\InformationMessageDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\QuestionMessageDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\WarningMessageDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ExpenseOperations.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -152,6 +178,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gazete.Data\Gazete.Data.csproj">
+      <Project>{774021C5-3625-428A-A6C6-D9665F7FEED2}</Project>
+      <Name>Gazete.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
